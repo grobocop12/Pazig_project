@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/hp/pazig_project/MainActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+            <state relative-caret-position="275">
+              <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
               <folding>
                 <element signature="e#38#375#0" expanded="true" />
               </folding>
@@ -59,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -2656,6 +2656,16 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/hp/pazig_project/MainActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+          <folding>
+            <element signature="e#38#375#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -2664,16 +2674,6 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/hp/pazig_project/MainActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-          <folding>
-            <element signature="e#38#375#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
   </component>

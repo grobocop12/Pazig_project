@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private var mVoiceInputTv: TextView? = null
     private var mSpeakBtn: ImageButton? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hello, How can I help you?")
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Witaj Powiedz coś ziomuś")
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
         } catch (a: ActivityNotFoundException) {
