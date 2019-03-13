@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 import java.util.Locale
 
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                 if (resultCode == RESULT_OK && null != data) {
                     val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     mVoiceInputTv!!.text = result[0]
+                    textView2.text = result[0]
                 }
             }
         }
