@@ -17,12 +17,14 @@ class SpeechRecognitionActivity : AppCompatActivity() {
 
     private lateinit var mVoiceInputTv : EditText
     private lateinit var mSpeakBtn : ImageButton
-    private lateinit var speechRecognitionIntent : Intent
+    private var silenceLength : Int = -1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speech_recognition)
 
+        silenceLength = this.intent.getIntExtra("silenceLength",-1)
         mVoiceInputTv = findViewById(R.id.voiceInput)
         mSpeakBtn = findViewById(R.id.btnSpeak)
         mSpeakBtn.setOnClickListener(View.OnClickListener {
@@ -31,18 +33,25 @@ class SpeechRecognitionActivity : AppCompatActivity() {
     }
 
     private fun startVoiceInput(){
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Recognizer will close automatically after 25 milliseconds of complete silence.")
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS,0)
-        intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS,true)
-        intent.putExtra(RecognizerIntent.EXTRA_RESULTS_PENDINGINTENT_BUNDLE,true)
+        val intent = setUpIntent()
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
         }catch(a : ActivityNotFoundException)
         {
+
         }
+    }
+
+    private fun setUpIntent() : Intent{
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Recognizer will close automatically after period of complete silence.")
+        if(silenceLength > -1){
+            intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, silenceLength)
+        }
+
+        return intent
     }
 
     override fun onActivityResult(requestCode: Int, resultCode:Int, data:Intent?) {

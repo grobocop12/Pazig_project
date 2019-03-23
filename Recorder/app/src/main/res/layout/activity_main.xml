@@ -7,6 +7,31 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+    <TextView
+            android:text="@string/completeSilenceLabel"
+            android:textSize="16sp"
+            android:layout_width="160dp"
+            android:layout_height="61dp"
+            android:id="@+id/silenceLabel" app:layout_constraintStart_toStartOf="parent"
+            android:layout_weight="1"
+            android:width="100dp"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/silenceEditText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/startSpeechRecognitionBtn"
+    />
+
+    <EditText
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/silenceEditText"
+            android:autofillHints="@string/completeSilenceHint"
+            app:layout_constraintStart_toEndOf="@+id/silenceLabel"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.3"/>
+
 
     <Button
             android:text="@string/startActivityBtn"
@@ -17,6 +42,8 @@
             android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.95"/>
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.95"
+            app:layout_constraintTop_toBottomOf="@+id/silenceLabel" app:layout_constraintHorizontal_bias="0.5"/>
+
 </android.support.constraint.ConstraintLayout>
