@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Recorder</string>
     <string name="hint">Tap to start</string>
+    <string name="startActivityBtn">Start session</string>
 </resources>
