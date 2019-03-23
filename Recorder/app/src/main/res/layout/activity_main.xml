@@ -7,11 +7,13 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:background="@color/colorScrollBackground">
         <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content">
+                      android:layout_height="wrap_content"
+                      android:focusableInTouchMode="true">
 
             <TextView
                     android:text="@string/completeSilenceLabel"
@@ -20,6 +22,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/silenceLabel" app:layout_constraintStart_toStartOf="parent"
                     android:layout_weight="1"
+                    android:textColor="@color/colorBlack"
 
             />
 
@@ -30,7 +33,9 @@
                     android:ems="10"
                     android:id="@+id/silenceEditText"
                     android:autofillHints="@string/completeSilenceAutoFillHint"
-                    android:hint="@string/completeSilenceHint"/>
+                    android:hint="@string/completeSilenceHint"
+                    android:textColor="@color/colorBlack"
+                    />
         </LinearLayout>
     </ScrollView>
 
