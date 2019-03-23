@@ -2,6 +2,7 @@
     <string name="app_name">Recorder</string>
     <string name="hint">Tap to start</string>
     <string name="startActivityBtn">Start session</string>
-    <string name="completeSilenceLabel">Time of silence to complete input (milliseconds)</string>
-    <string name="completeSilenceHint">Length of silence period</string>
+    <string name="completeSilenceLabel">Time of silence to complete input</string>
+    <string name="completeSilenceHint">milliseconds</string>
+    <string name="completeSilenceAutoFillHint">100</string>
 </resources>
