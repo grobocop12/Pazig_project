@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
         presenter = MainActivityPresenter(this)
         etSilenceLenght = findViewById(R.id.silenceEditText)
         startActivityButton = findViewById(R.id.startSpeechRecognitionBtn)
-        presenter.requestPermissions()
+
 
         startActivityButton.setOnClickListener {
             presenter.startRecognitionButtonClicked()
@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
                 presenter.updateSilenceLength(s.toString())
             }
         })
+
+        presenter.requestPermissions()
     }
 
     override fun getViewActivity():Activity{
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
         if(!presenter.checkPermission()){
             return
         }
-        presenter.startRecognitionActivity()
+        val intent = presenter.setUpIntent()
+        startActivity(intent)
 
     }
 
