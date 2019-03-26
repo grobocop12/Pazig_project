@@ -50,10 +50,10 @@ class SpeechRecognitionActivityPresenter {
         return intent
     }
 
-    fun updateRecognizerResult(requestCode: Int, resultCode:Int, data:Intent?){
-        println(requestCode)
-        println(resultCode)
+    fun updateRecognizerResult(data:Intent){
         println(data)
+        var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+        view.addTextToVoiceResultEditText(result.get(0))
 
     }
 

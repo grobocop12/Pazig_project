@@ -40,6 +40,8 @@ class SpeechRecognitionActivity : AppCompatActivity(), SpeechRecognitionActivity
         mSpeakBtn = findViewById(R.id.btnSpeak)
 
         mSpeakBtn.setOnClickListener {
+            println("OnClickListener")
+
             presenter.startVoiceInput()
         }
     }
@@ -55,7 +57,7 @@ class SpeechRecognitionActivity : AppCompatActivity(), SpeechRecognitionActivity
         when(requestCode){
             REQ_CODE_SPEECH_INPUT ->{
                 if((resultCode == Activity.RESULT_OK) && data != null) {
-                    presenter.updateRecognizerResult(requestCode, resultCode, data)
+                    presenter.updateRecognizerResult(data)
                 }
             }
         }
