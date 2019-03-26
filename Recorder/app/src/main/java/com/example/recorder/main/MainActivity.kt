@@ -1,30 +1,27 @@
-package com.example.recorder
+package com.example.recorder.main
 
 import android.Manifest
-import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.speech.RecognizerIntent
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
-import android.view.View
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_main.*
-import java.io.File.separator
-import java.util.*
-import kotlin.collections.ArrayList
+import com.example.recorder.R
+import com.example.recorder.SpeechRecognitionActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainActivityPresenter.View{
     private lateinit var etSilenceLenght : EditText
+    private lateinit var presenter: MainActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        presenter = MainActivityPresenter(this)
+
         etSilenceLenght = findViewById<EditText>(R.id.silenceEditText)
 
         setupPermissions()
