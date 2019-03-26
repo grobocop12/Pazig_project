@@ -1,4 +1,4 @@
-package com.example.recorder
+package com.example.recorder.View
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -9,6 +9,7 @@ import android.speech.RecognizerIntent
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
+import com.example.recorder.R
 import java.util.*
 
 private const val REQ_CODE_SPEECH_INPUT = 100
