@@ -67,8 +67,10 @@ class MainActivityPresenter {
     fun startRecognitionActivity(){
         val activity = view.getViewActivity()
         val intent = Intent(activity,SpeechRecognitionActivity::class.java)
+
         intent.putExtra("userEmail", user.getEmailAddress())
         intent.putExtra("userSilenceLength", user.getSilenceLength().toString())
+
         activity.startActivity(intent)
     }
 
