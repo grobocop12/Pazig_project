@@ -46,14 +46,12 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
     }
 
     override fun navigateToSpeechRecognitionScreen() {
-        val intent = Intent(this, SpeechRecognitionActivity::class.java)
-        if(!TextUtils.isEmpty(etSilenceLenght.text)){
-            intent.putExtra("silenceLength", etSilenceLenght.text.toString().toInt())
+        presenter.requestPermissions()
+        if(!presenter.checkPermission()){
+            return
         }
-        startActivity(intent)
+        presenter.startRecognitionActivity()
+
     }
 
-    fun updateSilenceLengthEditText(length:String){
-        etSilenceLenght.setText(length)
-    }
 }

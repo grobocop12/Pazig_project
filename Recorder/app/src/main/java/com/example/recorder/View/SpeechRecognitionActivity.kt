@@ -9,22 +9,28 @@ import android.speech.RecognizerIntent
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
+import com.example.recorder.Presenter.MainActivityPresenter
+import com.example.recorder.Presenter.SpeechRecognitionActivityPresenter
 import com.example.recorder.R
 import java.util.*
 
 private const val REQ_CODE_SPEECH_INPUT = 100
 
-class SpeechRecognitionActivity : AppCompatActivity() {
+class SpeechRecognitionActivity : AppCompatActivity(), SpeechRecognitionActivityPresenter.View {
 
     private lateinit var mVoiceInputTv : EditText
     private lateinit var mSpeakBtn : ImageButton
     private var silenceLength : Int = -1
-
+    private lateinit var presenter : SpeechRecognitionActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speech_recognition)
 
+        presenter = SpeechRecognitionActivityPresenter(this)
+        presenter.updateUserEmail(this.intent.getStringExtra("userEmail"))
+        presenter.updateSilenceLength(this.intent.getStringExtra("userSilenceLength"))
+        
         silenceLength = this.intent.getIntExtra("silenceLength",-1)
         mVoiceInputTv = findViewById(R.id.voiceInput)
         mSpeakBtn = findViewById(R.id.btnSpeak)

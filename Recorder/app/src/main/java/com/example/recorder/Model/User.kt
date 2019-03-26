@@ -3,15 +3,15 @@ package com.example.recorder.Model
 import java.lang.NumberFormatException
 
 class User {
-    private lateinit var emailAddress: String
-    private lateinit var recognizedText: String
+    private var emailAddress: String? = null
+    private var recognizedText: String? = null
     private var silenceLength: Int? = null
 
     fun setEmailAddress(address: String) {
         emailAddress = address
     }
 
-    fun getEmailAddress(): String {
+    fun getEmailAddress(): String? {
         return emailAddress
     }
 
@@ -19,15 +19,24 @@ class User {
         recognizedText = text
     }
 
-    fun getRecognizedText(): String {
+    fun getRecognizedText(): String? {
         return recognizedText
     }
 
     fun setSilenceLength(length: String) {
         try {
-            silenceLength = length.toInt()
+            var value = length.toInt()
+            if (value >= 0) {
+                silenceLength = value
+            }
         } catch (exc: NumberFormatException) {
 
+        }
+    }
+
+    fun setSilenceLength(length: Int) {
+        if (length >= 0) {
+            silenceLength = length
         }
     }
 
