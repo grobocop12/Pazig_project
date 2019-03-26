@@ -37,9 +37,7 @@ class SpeechRecognitionActivityPresenter {
     }
 
     fun startVoiceInput(){
-        view.disableRecognizingButton()
-        view.startRecognizerActivity()
-        view.enableRecognizingButton()
+
     }
 
 
@@ -53,7 +51,6 @@ class SpeechRecognitionActivityPresenter {
         fun getViewActivity(): Activity
         fun addTextToVoiceResult(text: String)
         fun startRecognizerActivity()
-        fun disableRecognizingButton()
-        fun enableRecognizingButton()
+
     }
 }

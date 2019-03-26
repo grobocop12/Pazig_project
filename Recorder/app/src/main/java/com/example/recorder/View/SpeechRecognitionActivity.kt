@@ -22,15 +22,13 @@ class SpeechRecognitionActivity : AppCompatActivity(), SpeechRecognitionActivity
 
     private lateinit var etResultText: EditText
     private lateinit var mSpeakBtn: ImageButton
-    private lateinit var presenter: SpeechRecognitionActivityPresenter
+    //private lateinit var presenter: SpeechRecognitionActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speech_recognition)
 
-        presenter = SpeechRecognitionActivityPresenter(this)
-
-
+        //presenter = SpeechRecognitionActivityPresenter(this)
         etResultText = findViewById(R.id.voiceInput)
         mSpeakBtn = findViewById(R.id.btnSpeak)
 
@@ -47,18 +45,20 @@ class SpeechRecognitionActivity : AppCompatActivity(), SpeechRecognitionActivity
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         println("onActivityResult")
-        println("super onActivityResult")
+
 
             if (requestCode ==REQ_CODE_SPEECH_INPUT){
                 if((resultCode == Activity.RESULT_OK) && data != null) {
                     var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     //presenter.updateRecognizerResult(result[0])
-                    addTextToVoiceResult(result[0])
+                    //addTextToVoiceResult(result[0])
+                    val old = etResultText.text.toString()
+                    etResultText.setText("%s %s".format(old,result[0]))
                 }
             }
         super.onActivityResult(requestCode, resultCode, data)
 
-
+        println("super onActivityResult")
     }
 
     override fun addTextToVoiceResult(text: String) {
@@ -84,11 +84,5 @@ class SpeechRecognitionActivity : AppCompatActivity(), SpeechRecognitionActivity
         return intent
     }
 
-    override fun disableRecognizingButton(){
-        mSpeakBtn.isClickable = false;
-    }
 
-    override fun enableRecognizingButton(){
-        mSpeakBtn.isClickable = true;
-    }
 }
