@@ -20,6 +20,12 @@ class SpeechRecognitionActivityPresenter {
     constructor(activityView: View){
         view = activityView
         user = User()
+        if(view.getViewActivity().intent.getStringExtra("userEmail")!= null) {
+            user.setEmailAddress(view.getViewActivity().intent.getStringExtra("userEmail"))
+        }
+        if(view.getViewActivity().intent.getStringExtra("userSilenceLength") != null) {
+            user.setSilenceLength(view.getViewActivity().intent.getStringExtra("userSilenceLength"))
+        }
     }
 
     fun updateSilenceLength(length: Int) {
@@ -40,17 +46,25 @@ class SpeechRecognitionActivityPresenter {
 
     }
 
+    fun updateUI(){
+        if(user.getRecognizedText()!= null) {
+            view.updateVoiceInputEditText(user.getRecognizedText() as String)
+        }
+    }
 
 
     fun updateRecognizerResult(result: String){
-        //view.addTextToVoiceResult(result)
-
+        if(user.getRecognizedText() != null) {
+            user.setRecognizedText(user.getRecognizedText() + " "+ result)
+        }else{
+            user.setRecognizedText(result)
+        }
+        view.updateVoiceInputEditText(user.getRecognizedText() as String)
     }
 
     interface View{
         fun getViewActivity(): Activity
-        fun addTextToVoiceResult(text: String)
+        fun updateVoiceInputEditText(text: String)
         fun startRecognizerActivity()
-
     }
 }

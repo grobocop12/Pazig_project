@@ -64,14 +64,16 @@ class MainActivityPresenter {
         user.setEmailAddress(addres)
     }
 
-    fun setUpIntent(): Intent{
+    fun setUpIntent(){
         val activity = view.getViewActivity()
         val intent = Intent(activity,SpeechRecognitionActivity::class.java)
-
-        intent.putExtra("userEmail", user.getEmailAddress())
-        intent.putExtra("userSilenceLength", user.getSilenceLength().toString())
-
-        return intent
+        if(user.getEmailAddress()!= null) {
+            intent.putExtra("userEmail", user.getEmailAddress())
+        }
+        if(user.getSilenceLength()!= null) {
+            intent.putExtra("userSilenceLength", user.getSilenceLength().toString())
+        }
+        activity.startActivity(intent)
     }
 
     interface View {

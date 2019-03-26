@@ -52,8 +52,10 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
         if(!presenter.checkPermission()){
             return
         }
-        val intent = presenter.setUpIntent()
-        startActivity(intent)
+        presenter.setUpIntent()
+
+        //val intent = Intent(this,SpeechRecognitionActivity::class.java)//presenter.setUpIntent()
+        //startActivity(intent)
 
     }
 
