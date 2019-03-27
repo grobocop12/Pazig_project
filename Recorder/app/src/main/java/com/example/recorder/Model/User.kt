@@ -4,7 +4,7 @@ import java.lang.NumberFormatException
 
 class User {
     private var emailAddress: String? = null
-    private var recognizedText: String = ""
+    private var recognizedText: ArrayList<String> = ArrayList()
     private var silenceLength: Int? = null
 
     fun setEmailAddress(address: String) {
@@ -16,10 +16,10 @@ class User {
     }
 
     fun appendRecognizedText(text: String) {
-        recognizedText = getRecognizedText()+" " + text
+        recognizedText.add(text)
     }
 
-    fun getRecognizedText(): String {
+    fun getRecognizedText(): ArrayList<String> {
         return recognizedText
     }
 

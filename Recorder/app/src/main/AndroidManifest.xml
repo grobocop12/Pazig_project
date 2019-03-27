@@ -22,7 +22,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".View.SpeechRecognitionActivity" android:parentActivityName=".View.MainActivity">
+        <activity android:name=".View.SpeechRecognitionActivity"
+                  android:parentActivityName=".View.MainActivity"
+        >
 
         </activity>
     </application>

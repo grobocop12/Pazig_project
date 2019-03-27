@@ -6,6 +6,9 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.support.constraint.ConstraintLayout
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -19,10 +22,10 @@ private const val REQ_CODE_SPEECH_INPUT = 100
 class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
 
     private lateinit var etResultText: EditText
-    private lateinit var mSpeakBtn: ImageButton
+    private lateinit var rvStatements_list : RecyclerView
     private lateinit var presenter: SpeechRecognitionActivityPresenter
     private lateinit var container: LinearLayout
-    private lateinit var textContainer : LinearLayout
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +33,12 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
         setContentView(R.layout.activity_speech_recognition)
 
         presenter = SpeechRecognitionActivityPresenter(this)
-        //etResultText = findViewById(R.id.voiceInput)
-        mSpeakBtn = findViewById(R.id.btnSpeak)
         container = findViewById(R.id.btnSpeakContainer)
-        textContainer = findViewById(R.id.textContainer)
+        rvStatements_list = findViewById(R.id.rvStatements_list)
+
+        rvStatements_list.layoutManager = LinearLayoutManager(this)
+        rvStatements_list.adapter = StatementAdapter(this.presenter)
+
         container.setOnClickListener(View.OnClickListener {
             startRecognizerActivity()
         })
@@ -51,36 +56,25 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
             if ((resultCode == Activity.RESULT_OK) && data != null) {
                 var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                 presenter.updateRecognizerResult(result[0])
-                val edit = EditText(this)
-                edit.setText(result[0])
-                textContainer.addView(edit)
             }
         }
 
 
     }
 
-
-    override fun updateVoiceInputEditText(text: String) {
-        etResultText.setText(text)
-
+    override fun updateRecyclerView() {
+        rvStatements_list.adapter?.notifyDataSetChanged()
     }
 
-    override fun startRecognizerActivity() {
+    private fun startRecognizerActivity() {
         val intent = setUpIntent()
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
         } catch (a: ActivityNotFoundException) {
 
         }
-
     }
 
-    override fun setOnClick() {
-        container.setOnClickListener(View.OnClickListener {
-            startRecognizerActivity()
-        })
-    }
 
     private fun setUpIntent(): Intent {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)

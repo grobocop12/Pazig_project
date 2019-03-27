@@ -1,21 +1,11 @@
 package com.example.recorder.Presenter
 
-import android.app.Activity
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.speech.RecognizerIntent
-import android.view.View
-import android.widget.Toast
 import com.example.recorder.Model.User
-import java.lang.Exception
-import java.util.*
 
-private const val REQ_CODE_SPEECH_INPUT = 100
 
 class SpeechRecognitionActivityPresenter {
     private var view : RecognizerView
     private var user : User
-
 
 
     constructor(activityView: RecognizerView){
@@ -29,38 +19,19 @@ class SpeechRecognitionActivityPresenter {
         }
     }
 
-    fun updateSilenceLength(length: Int) {
-        user.setSilenceLength(length)
-    }
-
-
-    fun updateSilenceLength(length: String) {
-        user.setSilenceLength(length)
-    }
-
-
-    fun updateUserEmail(addres:String){
-        user.setEmailAddress(addres)
-    }
-
-    fun startVoiceInput(){
-
-    }
-
-    fun attachOnClickListener(){
-        view.setOnClick()
-    }
-
     fun updateRecognizerResult(result: String){
         user.appendRecognizedText(result)
-        //view.updateVoiceInputEditText(user.getRecognizedText())
+        view.updateRecyclerView()
+    }
+
+    fun onBindStatementItemView(holder : StatementItemView, position : Int){
+        val statement = user.getRecognizedText()[position]
+        holder.setStatement(statement)
+    }
+
+    fun getStatementsCount() : Int{
+        return user.getRecognizedText().size
     }
 
 
-}
-public interface RecognizerView{
-    fun setOnClick()
-    fun getViewActivity(): Activity
-    fun updateVoiceInputEditText(text: String)
-    fun startRecognizerActivity()
 }

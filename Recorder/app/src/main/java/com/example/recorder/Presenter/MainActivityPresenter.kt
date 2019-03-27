@@ -75,8 +75,3 @@ class MainActivityPresenter {
     }
 
 }
-
-public interface MainView {
-    fun getViewActivity(): Activity
-    fun navigateToSpeechRecognitionScreen()
-}
