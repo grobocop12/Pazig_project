@@ -1,4 +1,5 @@
 package com.example.recorder.View
+
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -11,8 +12,8 @@ import com.example.recorder.Presenter.MainActivityPresenter
 import com.example.recorder.R
 
 class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
-    private lateinit var etSilenceLenght : EditText
-    private lateinit var startActivityButton : Button
+    private lateinit var etSilenceLenght: EditText
+    private lateinit var startActivityButton: Button
     private lateinit var presenter: MainActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
             presenter.startRecognitionButtonClicked()
         }
 
-        etSilenceLenght.addTextChangedListener(object:TextWatcher{
+        etSilenceLenght.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -43,20 +44,22 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
         presenter.requestPermissions()
     }
 
-    override fun getViewActivity():Activity{
+    override fun getViewActivity(): Activity {
         return this
     }
 
     override fun navigateToSpeechRecognitionScreen() {
         presenter.requestPermissions()
-        if(!presenter.checkPermission()){
+        if (!presenter.checkPermission()) {
             return
         }
-        presenter.setUpIntent()
-
-        //val intent = Intent(this,SpeechRecognitionActivity::class.java)//presenter.setUpIntent()
-        //startActivity(intent)
+        val intent = Intent(this, SpeechRecognitionActivity::class.java)
+        startActivity(intent)
 
     }
+
+    //val intent = Intent(this,SpeechRecognitionActivity::class.java)//presenter.setUpIntent()
+    //startActivity(intent)
+
 
 }

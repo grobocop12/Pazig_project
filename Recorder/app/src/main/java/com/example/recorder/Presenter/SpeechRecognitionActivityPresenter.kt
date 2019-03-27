@@ -46,23 +46,17 @@ class SpeechRecognitionActivityPresenter {
 
     }
 
-    fun updateUI(){
-        if(user.getRecognizedText()!= null) {
-            view.updateVoiceInputEditText(user.getRecognizedText() as String)
-        }
+    fun attachOnClickListener(){
+        view.setOnClick()
     }
 
-
     fun updateRecognizerResult(result: String){
-        if(user.getRecognizedText() != null) {
-            user.setRecognizedText(user.getRecognizedText() + " "+ result)
-        }else{
-            user.setRecognizedText(result)
-        }
-        view.updateVoiceInputEditText(user.getRecognizedText() as String)
+        user.appendRecognizedText(result)
+        //view.updateVoiceInputEditText(user.getRecognizedText())
     }
 
     interface View{
+        fun setOnClick()
         fun getViewActivity(): Activity
         fun updateVoiceInputEditText(text: String)
         fun startRecognizerActivity()

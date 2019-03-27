@@ -29,7 +29,12 @@ class MainActivityPresenter {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
 
-        if (microphonePermission != PackageManager.PERMISSION_GRANTED || writePermission != PackageManager.PERMISSION_GRANTED) {
+        val internetPermission = ContextCompat.checkSelfPermission(
+            view.getViewActivity(),
+            Manifest.permission.INTERNET
+        )
+
+        if (microphonePermission != PackageManager.PERMISSION_GRANTED || writePermission != PackageManager.PERMISSION_GRANTED || internetPermission != PackageManager.PERMISSION_GRANTED) {
             return false
         }
         return true
@@ -41,7 +46,8 @@ class MainActivityPresenter {
                 view.getViewActivity(),
                 arrayOf(
                     Manifest.permission.RECORD_AUDIO,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.INTERNET
                 ),
                 101
             )
@@ -64,17 +70,10 @@ class MainActivityPresenter {
         user.setEmailAddress(addres)
     }
 
-    fun setUpIntent(){
+    fun setUpIntent() {
         val activity = view.getViewActivity()
-        val intent = Intent(activity,SpeechRecognitionActivity::class.java)
-        if(user.getEmailAddress()!= null) {
-            intent.putExtra("userEmail", user.getEmailAddress())
-        }
-        if(user.getSilenceLength()!= null) {
-            intent.putExtra("userSilenceLength", user.getSilenceLength().toString())
-        }
-        activity.startActivity(intent)
     }
+
 
     interface View {
         fun getViewActivity(): Activity
