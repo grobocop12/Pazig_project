@@ -9,13 +9,14 @@ import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.example.recorder.Presenter.RecognizerView
 import com.example.recorder.Presenter.SpeechRecognitionActivityPresenter
 import com.example.recorder.R
 import java.util.*
 
 private const val REQ_CODE_SPEECH_INPUT = 100
 
-class SpeechRecognitionActivity : AppCompatActivity(), SpeechRecognitionActivityPresenter.View {
+class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
 
     private lateinit var etResultText: EditText
     private lateinit var mSpeakBtn: ImageButton

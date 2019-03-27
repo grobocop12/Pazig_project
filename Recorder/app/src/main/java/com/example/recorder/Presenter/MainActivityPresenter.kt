@@ -10,10 +10,10 @@ import com.example.recorder.Model.User
 import com.example.recorder.View.SpeechRecognitionActivity
 
 class MainActivityPresenter {
-    private var view: View
+    private var view: MainView
     private var user: User
 
-    constructor(mainView: View) {
+    constructor(mainView: MainView) {
         view = mainView
         user = User()
     }
@@ -74,9 +74,9 @@ class MainActivityPresenter {
         val activity = view.getViewActivity()
     }
 
+}
 
-    interface View {
-        fun getViewActivity(): Activity
-        fun navigateToSpeechRecognitionScreen()
-    }
+public interface MainView {
+    fun getViewActivity(): Activity
+    fun navigateToSpeechRecognitionScreen()
 }

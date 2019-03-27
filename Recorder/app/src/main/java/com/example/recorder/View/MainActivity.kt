@@ -9,9 +9,10 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.widget.*
 import com.example.recorder.Presenter.MainActivityPresenter
+import com.example.recorder.Presenter.MainView
 import com.example.recorder.R
 
-class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
+class MainActivity : AppCompatActivity(), MainView {
     private lateinit var etSilenceLenght: EditText
     private lateinit var startActivityButton: Button
     private lateinit var presenter: MainActivityPresenter

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.speech.RecognizerIntent
+import android.view.View
 import android.widget.Toast
 import com.example.recorder.Model.User
 import java.lang.Exception
@@ -12,12 +13,12 @@ import java.util.*
 private const val REQ_CODE_SPEECH_INPUT = 100
 
 class SpeechRecognitionActivityPresenter {
-    private var view : View
+    private var view : RecognizerView
     private var user : User
 
 
 
-    constructor(activityView: View){
+    constructor(activityView: RecognizerView){
         view = activityView
         user = User()
         if(view.getViewActivity().intent.getStringExtra("userEmail")!= null) {
@@ -55,10 +56,11 @@ class SpeechRecognitionActivityPresenter {
         //view.updateVoiceInputEditText(user.getRecognizedText())
     }
 
-    interface View{
-        fun setOnClick()
-        fun getViewActivity(): Activity
-        fun updateVoiceInputEditText(text: String)
-        fun startRecognizerActivity()
-    }
+
+}
+public interface RecognizerView{
+    fun setOnClick()
+    fun getViewActivity(): Activity
+    fun updateVoiceInputEditText(text: String)
+    fun startRecognizerActivity()
 }
