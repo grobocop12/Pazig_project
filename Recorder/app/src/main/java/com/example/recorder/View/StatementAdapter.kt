@@ -1,22 +1,17 @@
 package com.example.recorder.View
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import com.example.recorder.Presenter.SpeechRecognitionActivityPresenter
-import com.example.recorder.Presenter.StatementItemView
+import com.example.recorder.Presenter.SpeechRecognitionPresenter
+import com.example.recorder.Presenter.StatementPresenter
 import com.example.recorder.R
-import kotlinx.android.synthetic.main.statement_list_item.view.*
-import kotlin.contracts.Returns
 
 class StatementAdapter : RecyclerView.Adapter<StatementViewHolder> {
 
-    private var presenter : SpeechRecognitionActivityPresenter
+    private var presenter : StatementPresenter
 
-    constructor(presenter: SpeechRecognitionActivityPresenter){
+    constructor(presenter: StatementPresenter){
         this.presenter = presenter
     }
 

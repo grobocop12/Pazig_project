@@ -3,7 +3,7 @@ package com.example.recorder.Presenter
 import com.example.recorder.Model.User
 
 
-class SpeechRecognitionActivityPresenter {
+class SpeechRecognitionPresenter {
     private var view : RecognizerView
     private var user : User
 
@@ -19,19 +19,17 @@ class SpeechRecognitionActivityPresenter {
         }
     }
 
+    fun createStatementPresenter(): StatementPresenter{
+        val presenter = StatementPresenter(user)
+        return presenter
+    }
+
     fun updateRecognizerResult(result: String){
         user.appendRecognizedText(result)
         view.updateRecyclerView()
     }
 
-    fun onBindStatementItemView(holder : StatementItemView, position : Int){
-        val statement = user.getRecognizedText()[position]
-        holder.setStatement(statement)
-    }
 
-    fun getStatementsCount() : Int{
-        return user.getRecognizedText().size
-    }
 
 
 }

@@ -6,14 +6,12 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.RecognizerIntent
-import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.recorder.Presenter.RecognizerView
-import com.example.recorder.Presenter.SpeechRecognitionActivityPresenter
+import com.example.recorder.Presenter.SpeechRecognitionPresenter
 import com.example.recorder.R
 import java.util.*
 
@@ -23,7 +21,7 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
 
     private lateinit var etResultText: EditText
     private lateinit var rvStatements_list : RecyclerView
-    private lateinit var presenter: SpeechRecognitionActivityPresenter
+    private lateinit var presenter: SpeechRecognitionPresenter
     private lateinit var container: LinearLayout
 
 
@@ -32,17 +30,17 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speech_recognition)
 
-        presenter = SpeechRecognitionActivityPresenter(this)
+        presenter = SpeechRecognitionPresenter(this)
         container = findViewById(R.id.btnSpeakContainer)
         rvStatements_list = findViewById(R.id.rvStatements_list)
 
         rvStatements_list.layoutManager = LinearLayoutManager(this)
-        rvStatements_list.adapter = StatementAdapter(this.presenter)
+        rvStatements_list.adapter = StatementAdapter(presenter.createStatementPresenter())
 
         container.setOnClickListener(View.OnClickListener {
             startRecognizerActivity()
         })
-        Log.i("","View Created")
+
     }
 
 

@@ -9,11 +9,13 @@ import kotlinx.android.synthetic.main.statement_list_item.view.*
 
 class StatementViewHolder (view: View) :
     RecyclerView.ViewHolder(view), StatementItemView {
+
     override fun setStatement(text: String) {
         etStatement.setText(text)
     }
 
     val etStatement : EditText = view.etStatement
 
+    
 
 }
