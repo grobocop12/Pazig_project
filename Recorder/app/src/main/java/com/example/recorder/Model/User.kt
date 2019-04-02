@@ -15,6 +15,10 @@ class User {
         return emailAddress
     }
 
+    fun changeText(newText: String, index : Int){
+        recognizedText[index] = newText
+    }
+
     fun appendRecognizedText(text: String) {
         recognizedText.add(text)
     }

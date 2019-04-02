@@ -16,7 +16,7 @@ class StatementAdapter : RecyclerView.Adapter<StatementViewHolder> {
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): StatementViewHolder {
-        return StatementViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.statement_list_item,p0,false))
+        return StatementViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.statement_list_item,p0,false),presenter)
     }
 
     override fun getItemCount(): Int {
