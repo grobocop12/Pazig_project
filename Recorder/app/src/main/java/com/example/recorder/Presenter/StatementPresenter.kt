@@ -8,7 +8,6 @@ class StatementPresenter {
 
     private var user : User
     private lateinit var holder : StatementItemView
-    private var position = -1
 
     constructor(user:User){
         this.user = user
@@ -17,16 +16,16 @@ class StatementPresenter {
     fun onBindStatementItemView(holder : StatementItemView, position : Int){
         val statement = user.getRecognizedText()[position]
         this.holder = holder
-        this.position = position
         holder.setCancellButtonOnClickListener()
         holder.setStatement(statement)
         holder.setOnTextChanged()
         holder.disableButton()
+        holder.setPosition(position)
     }
 
-    fun manageTextChange(newText: String){
-        holder.disableButton()
-
+    fun manageTextChange(newText: String, position: Int){
+        //holder.disableButton()
+        user.changeText(newText,position)
     }
 
     fun getStatementsCount() : Int{

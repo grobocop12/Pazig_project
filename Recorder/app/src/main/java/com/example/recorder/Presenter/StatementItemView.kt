@@ -5,4 +5,5 @@ interface StatementItemView {
     fun setOnTextChanged()
     fun setCancellButtonOnClickListener()
     fun disableButton()
+    fun setPosition(newPosition:Int)
 }

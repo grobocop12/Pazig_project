@@ -11,6 +11,7 @@ import com.example.recorder.Presenter.StatementItemView
 import com.example.recorder.Presenter.StatementPresenter
 import com.example.recorder.R
 import kotlinx.android.synthetic.main.statement_list_item.view.*
+import java.text.FieldPosition
 import kotlin.coroutines.coroutineContext
 
 
@@ -20,6 +21,7 @@ class StatementViewHolder (view: View,private val  presenter : StatementPresente
     private val etStatement : EditText = view.etStatement
     private val btnCancellChange : ImageButton = view.cancellButton
     private var textBeforeChange : String = etStatement.toString()
+    private var index : Int = 0
 
     override fun setStatement(text: String) {
         etStatement.setText(text)
@@ -30,7 +32,7 @@ class StatementViewHolder (view: View,private val  presenter : StatementPresente
             override fun afterTextChanged(s: Editable?) {
                 btnCancellChange.setBackgroundColor(ContextCompat.getColor(btnCancellChange.context,R.color.colorPrimary))
                 btnCancellChange.isEnabled = true
-                presenter.manageTextChange(etStatement.text.toString())
+                presenter.manageTextChange(etStatement.text.toString(),index)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -55,6 +57,10 @@ class StatementViewHolder (view: View,private val  presenter : StatementPresente
     override fun disableButton() {
         btnCancellChange.isEnabled = false
         btnCancellChange.setBackgroundColor(ContextCompat.getColor(btnCancellChange.context,R.color.colorGray))
+    }
+
+    override fun setPosition(newPosition: Int){
+        this.index = newPosition
     }
 
 }
