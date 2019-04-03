@@ -70,8 +70,4 @@ class MainActivityPresenter {
         user.setEmailAddress(addres)
     }
 
-    fun setUpIntent() {
-        val activity = view.getViewActivity()
-    }
-
 }

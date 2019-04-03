@@ -12,16 +12,12 @@
             android:id="@+id/rvStatements_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/btnSpeakContainer"
             android:layout_marginTop="24dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
-
-    </android.support.v7.widget.RecyclerView>
-
+            app:layout_constraintVertical_bias="1.0"/>
 
     <LinearLayout
             android:id="@+id/btnSpeakContainer"
@@ -37,6 +33,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
+
         <ImageButton
                 android:id="@+id/btnSpeak"
                 android:layout_width="wrap_content"
@@ -45,8 +42,7 @@
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_mic_black_24dp"
-                android:clickable="false"
-        />
+                android:clickable="false"/>
 
         <TextView
                 android:id="@+id/textView"
@@ -55,6 +51,7 @@
                 android:layout_below="@id/btnSpeak"
                 android:layout_margin="10dp"
                 android:text="@string/hint"/>
+
     </LinearLayout>
 
 

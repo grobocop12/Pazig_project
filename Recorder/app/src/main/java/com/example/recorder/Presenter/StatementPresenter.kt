@@ -1,7 +1,6 @@
 package com.example.recorder.Presenter
 
 import com.example.recorder.Model.User
-import java.sql.Statement
 
 
 class StatementPresenter {
@@ -14,22 +13,22 @@ class StatementPresenter {
     }
 
     fun onBindStatementItemView(holder : StatementItemView, position : Int){
-        val statement = user.getRecognizedText()[position]
+        val statement = user.getModifiedRecognizedText()[position]
         this.holder = holder
+        holder.setIndex(position)
         holder.setCancellButtonOnClickListener()
+        holder.setUnchangedText(user.getRawText(position))
         holder.setStatement(statement)
+        holder.enableButton()
         holder.setOnTextChanged()
-        holder.disableButton()
-        holder.setPosition(position)
     }
 
     fun manageTextChange(newText: String, position: Int){
-        //holder.disableButton()
         user.changeText(newText,position)
     }
 
     fun getStatementsCount() : Int{
-        return user.getRecognizedText().size
+        return user.getModifiedRecognizedText().size
     }
 
 }

@@ -3,7 +3,6 @@ package com.example.recorder.View
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.recorder.Presenter.SpeechRecognitionPresenter
 import com.example.recorder.Presenter.StatementPresenter
 import com.example.recorder.R
 
@@ -16,7 +15,10 @@ class StatementAdapter : RecyclerView.Adapter<StatementViewHolder> {
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): StatementViewHolder {
-        return StatementViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.statement_list_item,p0,false),presenter)
+        return StatementViewHolder(
+            LayoutInflater.from(p0.context).inflate(R.layout.statement_list_item,p0,false),
+            presenter
+        )
     }
 
     override fun getItemCount(): Int {

@@ -11,56 +11,65 @@ import com.example.recorder.Presenter.StatementItemView
 import com.example.recorder.Presenter.StatementPresenter
 import com.example.recorder.R
 import kotlinx.android.synthetic.main.statement_list_item.view.*
-import java.text.FieldPosition
-import kotlin.coroutines.coroutineContext
 
 
-class StatementViewHolder (view: View,private val  presenter : StatementPresenter) :
+class StatementViewHolder (
+    view: View,
+    private val presenter: StatementPresenter
+
+) :
     RecyclerView.ViewHolder(view), StatementItemView {
 
     private val etStatement : EditText = view.etStatement
-    private val btnCancellChange : ImageButton = view.cancellButton
-    private var textBeforeChange : String = etStatement.toString()
-    private var index : Int = 0
+    private val btnCancelChange : ImageButton = view.cancelButton
+    private var textBeforeChange : String? = null
+    private var index: Int = -1
 
-    override fun setStatement(text: String) {
+    override fun setStatement(text: String?) {
         etStatement.setText(text)
     }
 
     override fun setOnTextChanged() {
+
         etStatement.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                btnCancellChange.setBackgroundColor(ContextCompat.getColor(btnCancellChange.context,R.color.colorPrimary))
-                btnCancellChange.isEnabled = true
-                presenter.manageTextChange(etStatement.text.toString(),index)
-            }
 
+
+            }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
+                presenter.manageTextChange(etStatement.text.toString(),index)
+                enableButton()
             }
 
         })
     }
 
     override fun setCancellButtonOnClickListener() {
-        btnCancellChange.setOnClickListener(View.OnClickListener {
+        btnCancelChange.setOnClickListener{
             setStatement(textBeforeChange)
-
-            disableButton()
-        })
+            enableButton()
+        }
     }
 
-    override fun disableButton() {
-        btnCancellChange.isEnabled = false
-        btnCancellChange.setBackgroundColor(ContextCompat.getColor(btnCancellChange.context,R.color.colorGray))
+    override fun enableButton() {
+        if(etStatement.text.toString() == textBeforeChange) {
+            btnCancelChange.isEnabled = false
+            btnCancelChange.setBackgroundColor(ContextCompat.getColor(btnCancelChange.context, R.color.colorGray))
+        }else{
+            btnCancelChange.setBackgroundColor(ContextCompat.getColor(btnCancelChange.context,R.color.colorPrimary))
+            btnCancelChange.isEnabled = true
+        }
     }
 
-    override fun setPosition(newPosition: Int){
-        this.index = newPosition
+    override fun setUnchangedText(text: String) {
+        textBeforeChange = text
+    }
+
+    override fun setIndex(newIndex : Int) {
+        index = newIndex
     }
 
 }
