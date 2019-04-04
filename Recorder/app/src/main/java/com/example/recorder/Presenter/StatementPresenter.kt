@@ -16,7 +16,7 @@ class StatementPresenter {
         val statement = user.getModifiedRecognizedText()[position]
         this.holder = holder
         holder.setIndex(position)
-        holder.setCancellButtonOnClickListener()
+        holder.setCancelButtonOnClickListener()
         holder.setUnchangedText(user.getRawText(position))
         holder.setStatement(statement)
         holder.enableButton()
@@ -29,6 +29,10 @@ class StatementPresenter {
 
     fun getStatementsCount() : Int{
         return user.getModifiedRecognizedText().size
+    }
+
+    fun deleteStatement(index:Int){
+        user.deleteStatement(index)
     }
 
 }

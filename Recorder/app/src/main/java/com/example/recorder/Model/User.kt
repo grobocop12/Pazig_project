@@ -54,4 +54,8 @@ class User {
         return silenceLength
     }
 
+    fun deleteStatement(index: Int){
+        rawRecognizedText.removeAt(index)
+        modifiedRecognizedText.removeAt(index)
+    }
 }

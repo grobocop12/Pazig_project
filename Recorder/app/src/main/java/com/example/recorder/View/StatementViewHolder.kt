@@ -13,16 +13,17 @@ import com.example.recorder.R
 import kotlinx.android.synthetic.main.statement_list_item.view.*
 
 
-class StatementViewHolder (
+class StatementViewHolder(
     view: View,
     private val presenter: StatementPresenter
 
 ) :
     RecyclerView.ViewHolder(view), StatementItemView {
 
-    private val etStatement : EditText = view.etStatement
-    private val btnCancelChange : ImageButton = view.cancelButton
-    private var textBeforeChange : String? = null
+    private val etStatement: EditText = view.etStatement
+    private val btnCancelChange: ImageButton = view.cancelButton
+    public val btnDeleteStatement: ImageButton = view.deleteButton
+    private var textBeforeChange: String? = null
     private var index: Int = -1
 
     override fun setStatement(text: String?) {
@@ -31,35 +32,37 @@ class StatementViewHolder (
 
     override fun setOnTextChanged() {
 
-        etStatement.addTextChangedListener(object :TextWatcher{
+        etStatement.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
 
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                presenter.manageTextChange(etStatement.text.toString(),index)
+                presenter.manageTextChange(etStatement.text.toString(), index)
                 enableButton()
             }
 
         })
     }
 
-    override fun setCancellButtonOnClickListener() {
-        btnCancelChange.setOnClickListener{
+    override fun setCancelButtonOnClickListener() {
+        btnCancelChange.setOnClickListener {
             setStatement(textBeforeChange)
             enableButton()
         }
     }
 
     override fun enableButton() {
-        if(etStatement.text.toString() == textBeforeChange) {
+        if (etStatement.text.toString() == textBeforeChange) {
             btnCancelChange.isEnabled = false
             btnCancelChange.setBackgroundColor(ContextCompat.getColor(btnCancelChange.context, R.color.colorGray))
-        }else{
-            btnCancelChange.setBackgroundColor(ContextCompat.getColor(btnCancelChange.context,R.color.colorPrimary))
+        } else {
+            btnCancelChange.setBackgroundColor(ContextCompat.getColor(btnCancelChange.context, R.color.colorPrimary))
             btnCancelChange.isEnabled = true
         }
     }
@@ -68,8 +71,12 @@ class StatementViewHolder (
         textBeforeChange = text
     }
 
-    override fun setIndex(newIndex : Int) {
+    override fun setIndex(newIndex: Int) {
         index = newIndex
+    }
+
+    override fun deleteStatement() {
+        presenter.deleteStatement(index)
     }
 
 }
