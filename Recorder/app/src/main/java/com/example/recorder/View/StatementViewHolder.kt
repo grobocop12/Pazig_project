@@ -1,5 +1,7 @@
 package com.example.recorder.View
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -13,13 +15,8 @@ import com.example.recorder.R
 import kotlinx.android.synthetic.main.statement_list_item.view.*
 
 
-class StatementViewHolder(
-    view: View,
-    private val presenter: StatementPresenter
-
-) :
-    RecyclerView.ViewHolder(view), StatementItemView {
-
+class StatementViewHolder(view: View, private val presenter: StatementPresenter) : RecyclerView.ViewHolder(view),
+    StatementItemView {
     private val etStatement: EditText = view.etStatement
     private val btnCancelChange: ImageButton = view.cancelButton
     public val btnDeleteStatement: ImageButton = view.deleteButton
@@ -76,7 +73,21 @@ class StatementViewHolder(
     }
 
     override fun deleteStatement() {
+        /*
+        val builder = AlertDialog.Builder(itemView.context)
+        builder.setMessage(R.string.alertDialogMessage)
+        builder.setCancelable(true)
+        builder.setPositiveButton(
+            R.string.alertDialogButtonPositive
+        ) { _: DialogInterface, _: Int ->
+
+        }
+        builder.setNegativeButton(R.string.alertDialogButtonNegative
+        ) { _,_ ->
+        }
+        builder.create()
+        builder.show()
+        */
         presenter.deleteStatement(index)
     }
-
 }

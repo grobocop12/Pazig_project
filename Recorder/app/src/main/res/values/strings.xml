@@ -5,4 +5,7 @@
     <string name="completeSilenceLabel">Time of silence to complete input</string>
     <string name="completeSilenceHint">milliseconds</string>
     <string name="completeSilenceAutoFillHint">100</string>
+    <string name="alertDialogMessage">Are You sure You want to delete this statement?</string>
+    <string name="alertDialogButtonPositive">Yes</string>
+    <string name="alertDialogButtonNegative">No</string>
 </resources>
