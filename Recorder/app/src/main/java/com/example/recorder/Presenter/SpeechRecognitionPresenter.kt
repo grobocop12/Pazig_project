@@ -1,5 +1,7 @@
 package com.example.recorder.Presenter
 
+import android.content.ClipboardManager
+import android.support.v4.content.ContextCompat.getSystemService
 import com.example.recorder.Model.User
 
 
@@ -20,8 +22,7 @@ class SpeechRecognitionPresenter {
     }
 
     fun createStatementPresenter(): StatementPresenter{
-        val presenter = StatementPresenter(user)
-        return presenter
+         return StatementPresenter(user)
     }
 
     fun updateRecognizerResult(result: String){
@@ -29,7 +30,9 @@ class SpeechRecognitionPresenter {
         view.updateRecyclerView()
     }
 
-
-
+    fun copyToClipboard(){
+        val text = user.getModifiedRecognizedText().joinToString()
+        view.putTextOnClipboard(text)
+    }
 
 }

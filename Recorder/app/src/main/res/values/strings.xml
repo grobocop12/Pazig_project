@@ -8,4 +8,6 @@
     <string name="alertDialogMessage">Are You sure You want to delete this statement?</string>
     <string name="alertDialogButtonPositive">Yes</string>
     <string name="alertDialogButtonNegative">No</string>
+    <string name="clipboardLabel">Recognized text</string>
+    <string name="toastMessage">Text copied to clipboard</string>
 </resources>
