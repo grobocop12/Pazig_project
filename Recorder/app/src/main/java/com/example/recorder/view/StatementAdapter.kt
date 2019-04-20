@@ -1,11 +1,11 @@
-package com.example.recorder.View
+package com.example.recorder.view
 
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.recorder.Presenter.StatementPresenter
+import com.example.recorder.presenter.StatementPresenter
 import com.example.recorder.R
 
 class StatementAdapter : RecyclerView.Adapter<StatementViewHolder> {

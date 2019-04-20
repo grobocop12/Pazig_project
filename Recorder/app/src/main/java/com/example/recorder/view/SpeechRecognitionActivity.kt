@@ -1,4 +1,4 @@
-package com.example.recorder.View
+package com.example.recorder.view
 
 import android.app.Activity
 import android.content.*
@@ -7,13 +7,10 @@ import android.speech.RecognizerIntent
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.example.recorder.Presenter.RecognizerView
-import com.example.recorder.Presenter.SpeechRecognitionPresenter
+import com.example.recorder.presenter.SpeechRecognitionPresenter
 import com.example.recorder.R
 import java.util.*
 
@@ -21,7 +18,7 @@ private const val REQ_CODE_SPEECH_INPUT = 100
 
 class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
 
-    private lateinit var rvStatements_list: RecyclerView
+    private lateinit var rvStatementsList: RecyclerView
     private lateinit var presenter: SpeechRecognitionPresenter
     private lateinit var container: LinearLayout
     private lateinit var btnCopyToClipboard: ImageButton
@@ -32,11 +29,11 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
 
         presenter = SpeechRecognitionPresenter(this)
         container = findViewById(R.id.btnSpeakContainer)
-        rvStatements_list = findViewById(R.id.rvStatements_list)
+        rvStatementsList = findViewById(R.id.rvStatements_list)
         btnCopyToClipboard = findViewById(R.id.btnCopy)
 
-        rvStatements_list.layoutManager = LinearLayoutManager(this)
-        rvStatements_list.adapter = StatementAdapter(presenter.createStatementPresenter())
+        rvStatementsList.layoutManager = LinearLayoutManager(this)
+        rvStatementsList.adapter = StatementAdapter(presenter.createStatementPresenter())
 
         container.setOnClickListener{
             startRecognizerActivity()
@@ -62,7 +59,7 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
     }
 
     override fun updateRecyclerView() {
-        rvStatements_list.adapter?.notifyDataSetChanged()
+        rvStatementsList.adapter?.notifyDataSetChanged()
     }
 
     override fun putTextOnClipboard(text: String) {
@@ -93,6 +90,5 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
         intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 20)
         return intent
     }
-
 
 }

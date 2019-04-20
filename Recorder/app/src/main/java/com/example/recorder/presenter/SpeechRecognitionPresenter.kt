@@ -1,8 +1,7 @@
-package com.example.recorder.Presenter
+package com.example.recorder.presenter
 
-import android.content.ClipboardManager
-import android.support.v4.content.ContextCompat.getSystemService
-import com.example.recorder.Model.User
+import com.example.recorder.model.User
+import com.example.recorder.view.RecognizerView
 
 
 class SpeechRecognitionPresenter {

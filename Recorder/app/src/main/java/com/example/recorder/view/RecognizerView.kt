@@ -1,4 +1,4 @@
-package com.example.recorder.Presenter
+package com.example.recorder.view
 
 import android.app.Activity
 

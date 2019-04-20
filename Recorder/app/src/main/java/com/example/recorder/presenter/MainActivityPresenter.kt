@@ -1,13 +1,10 @@
-package com.example.recorder.Presenter
+package com.example.recorder.presenter
 import android.Manifest
-import android.app.Activity
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.startActivity
-import com.example.recorder.Model.User
-import com.example.recorder.View.SpeechRecognitionActivity
+import com.example.recorder.model.User
+import com.example.recorder.view.MainView
 
 class MainActivityPresenter {
     private var view: MainView

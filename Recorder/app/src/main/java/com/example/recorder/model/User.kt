@@ -1,4 +1,4 @@
-package com.example.recorder.Model
+package com.example.recorder.model
 
 import java.lang.NumberFormatException
 

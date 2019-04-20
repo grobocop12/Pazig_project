@@ -1,6 +1,7 @@
-package com.example.recorder.Presenter
+package com.example.recorder.presenter
 
-import com.example.recorder.Model.User
+import com.example.recorder.model.User
+import com.example.recorder.view.StatementItemView
 
 
 class StatementPresenter {

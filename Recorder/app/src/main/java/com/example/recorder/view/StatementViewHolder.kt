@@ -1,7 +1,5 @@
-package com.example.recorder.View
+package com.example.recorder.view
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -9,8 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
-import com.example.recorder.Presenter.StatementItemView
-import com.example.recorder.Presenter.StatementPresenter
+import com.example.recorder.presenter.StatementPresenter
 import com.example.recorder.R
 import kotlinx.android.synthetic.main.statement_list_item.view.*
 

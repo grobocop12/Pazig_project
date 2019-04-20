@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".View.MainActivity" android:id="@+id/relativeLayout2">
+        tools:context=".view.MainActivity" android:id="@+id/relativeLayout2">
 
     <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:background="@color/colorScrollBackground" android:id="@+id/scrollView3"

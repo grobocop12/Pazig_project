@@ -1,4 +1,4 @@
-package com.example.recorder.Presenter
+package com.example.recorder.view
 
 interface StatementItemView {
     fun setStatement(text : String?)

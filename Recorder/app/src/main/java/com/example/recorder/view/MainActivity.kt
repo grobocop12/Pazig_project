@@ -1,15 +1,13 @@
-package com.example.recorder.View
+package com.example.recorder.view
 
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
 import android.widget.*
-import com.example.recorder.Presenter.MainActivityPresenter
-import com.example.recorder.Presenter.MainView
+import com.example.recorder.presenter.MainActivityPresenter
 import com.example.recorder.R
 
 class MainActivity : AppCompatActivity(), MainView {
