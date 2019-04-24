@@ -15,6 +15,8 @@ import android.widget.EditText
 import com.example.recorder.R
 import com.example.recorder.presenter.MainActivityPresenter
 
+const val USER_BUNDLE_STRING_EXTRA = "userBundle"
+
 class MainActivity : AppCompatActivity(), MainView {
     private lateinit var etSilenceLenght: EditText
     private lateinit var startActivityButton: Button
@@ -42,7 +44,17 @@ class MainActivity : AppCompatActivity(), MainView {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                presenter.updateSilenceLength(s.toString())
+                if(s.toString()!="") {
+                    if (s.toString().toInt() > 10000) {
+                        presenter.updateSilenceLength(10000)
+                        etSilenceLenght.setText("10000")
+                    } else {
+                        presenter.updateSilenceLength(s.toString())
+                    }
+                }else{
+                    presenter.updateSilenceLength(0)
+                }
+
             }
         })
 
@@ -59,6 +71,7 @@ class MainActivity : AppCompatActivity(), MainView {
             return
         }
         val intent = Intent(this, SpeechRecognitionActivity::class.java)
+        intent.putExtra(USER_BUNDLE_STRING_EXTRA, presenter.setUpUserBundle())
         startActivity(intent)
 
     }

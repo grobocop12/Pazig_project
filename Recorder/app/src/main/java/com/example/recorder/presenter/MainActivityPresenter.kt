@@ -1,10 +1,11 @@
 package com.example.recorder.presenter
-import android.Manifest
-import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
+import android.os.Bundle
 import com.example.recorder.model.User
 import com.example.recorder.view.MainView
+
+const val emailKey = "user email"
+const val silenceLengthKey = "silence length"
+
 
 class MainActivityPresenter {
     private var view: MainView
@@ -14,10 +15,6 @@ class MainActivityPresenter {
         view = mainView
         user = User()
     }
-
-
-
-
 
     fun startRecognitionButtonClicked() {
         view.navigateToSpeechRecognitionScreen()
@@ -33,6 +30,16 @@ class MainActivityPresenter {
 
     fun updateUserEmail(addres:String){
         user.setEmailAddress(addres)
+    }
+
+    fun setUpUserBundle() : Bundle{
+        val userBundle = Bundle()
+        userBundle.putString(emailKey,user.getEmailAddress())
+        if(user.getSilenceLength()!=null) {
+            userBundle.putInt(silenceLengthKey, user.getSilenceLength()!!)
+        }
+
+        return userBundle
     }
 
 }
