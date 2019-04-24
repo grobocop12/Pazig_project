@@ -1,14 +1,19 @@
 package com.example.recorder.view
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.*
-import com.example.recorder.presenter.MainActivityPresenter
+import android.widget.Button
+import android.widget.EditText
 import com.example.recorder.R
+import com.example.recorder.presenter.MainActivityPresenter
 
 class MainActivity : AppCompatActivity(), MainView {
     private lateinit var etSilenceLenght: EditText
@@ -41,7 +46,7 @@ class MainActivity : AppCompatActivity(), MainView {
             }
         })
 
-        presenter.requestPermissions()
+        requestPermissions()
     }
 
     override fun getViewActivity(): Activity {
@@ -49,13 +54,49 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun navigateToSpeechRecognitionScreen() {
-        presenter.requestPermissions()
-        if (!presenter.checkPermission()) {
+        requestPermissions()
+        if (!checkPermission()) {
             return
         }
         val intent = Intent(this, SpeechRecognitionActivity::class.java)
         startActivity(intent)
 
+    }
+
+    private fun requestPermissions() {
+        if (!checkPermission()) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.INTERNET
+                ),
+                101
+            )
+        }
+    }
+
+    private fun checkPermission(): Boolean {
+        val microphonePermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.RECORD_AUDIO
+        )
+
+        val writePermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+
+        val internetPermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.INTERNET
+        )
+
+        if (microphonePermission != PackageManager.PERMISSION_GRANTED || writePermission != PackageManager.PERMISSION_GRANTED || internetPermission != PackageManager.PERMISSION_GRANTED) {
+            return false
+        }
+        return true
     }
 
 }

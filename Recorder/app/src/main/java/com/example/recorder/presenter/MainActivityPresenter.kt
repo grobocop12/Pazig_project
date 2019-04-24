@@ -15,41 +15,9 @@ class MainActivityPresenter {
         user = User()
     }
 
-    fun checkPermission(): Boolean {
-        val microphonePermission = ContextCompat.checkSelfPermission(
-            view.getViewActivity(),
-            Manifest.permission.RECORD_AUDIO
-        )
 
-        val writePermission = ContextCompat.checkSelfPermission(
-            view.getViewActivity(),
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
 
-        val internetPermission = ContextCompat.checkSelfPermission(
-            view.getViewActivity(),
-            Manifest.permission.INTERNET
-        )
 
-        if (microphonePermission != PackageManager.PERMISSION_GRANTED || writePermission != PackageManager.PERMISSION_GRANTED || internetPermission != PackageManager.PERMISSION_GRANTED) {
-            return false
-        }
-        return true
-    }
-
-    fun requestPermissions() {
-        if(!checkPermission()) {
-            ActivityCompat.requestPermissions(
-                view.getViewActivity(),
-                arrayOf(
-                    Manifest.permission.RECORD_AUDIO,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.INTERNET
-                ),
-                101
-            )
-        }
-    }
 
     fun startRecognitionButtonClicked() {
         view.navigateToSpeechRecognitionScreen()
