@@ -6,4 +6,5 @@
     <color name="colorScrollBackground">#e6ffe6</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#6F6F6F</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

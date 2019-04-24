@@ -2,12 +2,14 @@
     <string name="app_name">Recorder</string>
     <string name="hint">Tap to start</string>
     <string name="startActivityBtn">Start recognition</string>
-    <string name="completeSilenceLabel">Time of silence to complete input</string>
-    <string name="completeSilenceHint">milliseconds</string>
+    <string name="completeSilenceLabel">Time of silence to complete input (in milliseconds)</string>
+    <string name="completeSilenceHint">Max. 10000</string>
     <string name="completeSilenceAutoFillHint">100</string>
     <string name="alertDialogMessage">Are You sure You want to delete this statement?</string>
     <string name="alertDialogButtonPositive">Yes</string>
     <string name="alertDialogButtonNegative">No</string>
     <string name="clipboardLabel">Recognized text</string>
     <string name="toastMessage">Text copied to clipboard</string>
+    <string name="userEmail">User e-mail</string>
+    <string name="emailHint">Your@email.com</string>
 </resources>
