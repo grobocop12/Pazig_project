@@ -90,6 +90,7 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
 
             override fun onError(error: Int) {
                 dialog.dismiss()
+                Toast.makeText(this@SpeechRecognitionActivity,"An error occurred, please try again", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResults(results: Bundle?) {
@@ -137,7 +138,6 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
         val intent = setUpIntent()
         try {
             recognizer.startListening(intent)
-            //startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
         } catch (a: ActivityNotFoundException) {
 
         }

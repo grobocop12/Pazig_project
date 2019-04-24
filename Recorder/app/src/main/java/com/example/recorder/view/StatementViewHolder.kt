@@ -70,21 +70,6 @@ class StatementViewHolder(view: View, private val presenter: StatementPresenter)
     }
 
     override fun deleteStatement() {
-        /*
-        val builder = AlertDialog.Builder(itemView.context)
-        builder.setMessage(R.string.alertDialogMessage)
-        builder.setCancelable(true)
-        builder.setPositiveButton(
-            R.string.alertDialogButtonPositive
-        ) { _: DialogInterface, _: Int ->
-
-        }
-        builder.setNegativeButton(R.string.alertDialogButtonNegative
-        ) { _,_ ->
-        }
-        builder.create()
-        builder.show()
-        */
         presenter.deleteStatement(index)
     }
 }
