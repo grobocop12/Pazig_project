@@ -1,6 +1,7 @@
 package com.example.recorder.view
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.*
 import android.os.Bundle
 import android.speech.RecognitionListener
@@ -24,6 +25,7 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
     private lateinit var presenter: SpeechRecognitionPresenter
     private lateinit var container: LinearLayout
     private lateinit var btnCopyToClipboard: ImageButton
+    private lateinit var recognizer: SpeechRecognizer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +48,57 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
         btnCopyToClipboard.setOnClickListener {
             presenter.copyToClipboard()
         }
+
+        recognizer = SpeechRecognizer.createSpeechRecognizer(this)
+        recognizer.setRecognitionListener(object : RecognitionListener {
+
+            override fun onReadyForSpeech(params: Bundle?) {
+
+            }
+
+            override fun onRmsChanged(rmsdB: Float) {
+
+            }
+
+            override fun onBufferReceived(buffer: ByteArray?) {
+
+            }
+
+            override fun onPartialResults(partialResults: Bundle?) {
+
+            }
+
+            override fun onEvent(eventType: Int, params: Bundle?) {
+
+            }
+
+            override fun onBeginningOfSpeech() {
+                val builder = AlertDialog.Builder(this@SpeechRecognitionActivity)
+                builder.setMessage("Speak")
+                builder.setCancelable(true)
+                builder.setOnCancelListener {
+                    recognizer.stopListening()
+                }
+                builder.show()
+            }
+
+            override fun onEndOfSpeech() {
+
+            }
+
+            override fun onError(error: Int) {
+
+            }
+
+            override fun onResults(results: Bundle?) {
+                val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)//getting all the matches
+                //displaying the first match
+                if (matches != null) {
+                    presenter.updateRecognizerResult(matches[0])
+                }
+            }
+
+        })
     }
 
 
@@ -80,7 +133,8 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
     private fun startRecognizerActivity() {
         val intent = setUpIntent()
         try {
-            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
+            recognizer.startListening(intent)
+            //startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
         } catch (a: ActivityNotFoundException) {
 
         }
