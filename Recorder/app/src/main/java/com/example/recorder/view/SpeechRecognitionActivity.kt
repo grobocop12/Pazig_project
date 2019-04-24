@@ -26,7 +26,8 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
     private lateinit var container: LinearLayout
     private lateinit var btnCopyToClipboard: ImageButton
     private lateinit var recognizer: SpeechRecognizer
-
+    private lateinit var builder: AlertDialog.Builder
+    private lateinit var dialog : AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,13 +74,14 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
             }
 
             override fun onBeginningOfSpeech() {
-                val builder = AlertDialog.Builder(this@SpeechRecognitionActivity)
+                builder = AlertDialog.Builder(this@SpeechRecognitionActivity)
                 builder.setMessage("Speak")
                 builder.setCancelable(true)
                 builder.setOnCancelListener {
                     recognizer.stopListening()
                 }
-                builder.show()
+                dialog = builder.create()
+                dialog.show()
             }
 
             override fun onEndOfSpeech() {
@@ -87,10 +89,11 @@ class SpeechRecognitionActivity : AppCompatActivity(), RecognizerView {
             }
 
             override fun onError(error: Int) {
-
+                dialog.dismiss()
             }
 
             override fun onResults(results: Bundle?) {
+                dialog.dismiss()
                 val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)//getting all the matches
                 //displaying the first match
                 if (matches != null) {

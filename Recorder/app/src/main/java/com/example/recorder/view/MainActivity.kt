@@ -2,6 +2,7 @@ package com.example.recorder.view
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), MainView {
     private lateinit var etSilenceLenght: EditText
     private lateinit var startActivityButton: Button
     private lateinit var presenter: MainActivityPresenter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
